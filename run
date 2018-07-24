@@ -1,0 +1,17 @@
+#!/bin/bash
+
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+
+case "$1" in
+    dev)
+        # Environment variables taken form .flaskenv
+	      # Might be useless, keeping for the time being.
+        flask run -p 5000
+        ;;
+
+    prod)
+        # See how this fits with environment variables in .env
+        gunicorn "gxpkgd_python:create_app('config/prod.py')" -w 3 -b 0.0.0.0:4000
+        ;;
+esac
