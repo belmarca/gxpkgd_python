@@ -13,8 +13,15 @@ def github_handler(url):
 
     def get_license(author, name):
         url = 'https://api.github.com/repos/{}/{}/license'.format(author, name)
-        return requests.get(url).json()['license']['spdx_id']
+        r = requests.get(url).json()
+        return r['license']['spdx_id']
 
+    def get_forks(author, name):
+        url = 'https://api.github.com/repos/{}/{}/forks'.format(author, name)
+        r = requests.get(url).json()
+        return [{'login': i['owner']['login'], 'name': i['name'], 'html_url': i['html_url']} for i in r]
+
+    # [i['owner']['login'], i['name'], i['html_url']] for i in data
     # Retrieve the metadata from github and return a dict
     urlinfo = url.split('/')
     author = urlinfo[3]
@@ -22,6 +29,7 @@ def github_handler(url):
     last_updated = str(datetime.now())
     try:
         license = get_license(author, name)
+        forks = get_forks(author, name)
         meta = parse_pkg(get_pkg(author, name))
     except Exception as e:
         return e
@@ -33,6 +41,6 @@ def github_handler(url):
         'description': meta['description:'] if 'description:' in meta.keys() else 'Package has no description.',
         'runtime': meta['runtime:'] if 'runtime:' in meta.keys() else 'No runtime specified.',
         'repo': url
-    }
+    }, forks
 
 

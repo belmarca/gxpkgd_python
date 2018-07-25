@@ -1,4 +1,4 @@
-from pony.orm import db_session, PrimaryKey, Required
+from pony.orm import db_session, PrimaryKey, Required, Set
 
 from gxpkgd_python.extensions import db, pw
 
@@ -20,3 +20,14 @@ class Package(db.Entity):
     license = Required(str)
     last_update = Required(str)
     repo = Required(str, unique=True)
+    forks = Set('Fork')
+
+
+class Fork(db.Entity):
+    _table_ = 'Fork'
+    id = PrimaryKey(int, auto=True)
+    # using same names as github api
+    login = Required(str) # username
+    name = Required(str) # repo name
+    html_url = Required(str) # repo url
+    package = Required(Package)
