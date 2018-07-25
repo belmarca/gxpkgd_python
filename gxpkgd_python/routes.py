@@ -48,6 +48,12 @@ def package(repo):
 
 @packagesBP.route('/search/<string:query>')
 def search(query):
+    @db_session
+    def search_package(query):
+        results = Package.search(query, add_wildcards=True, include_entity=True, use_dict=True)['results']
+        # return type(results)
+        return [r['entity'] for r in results]
+
     try:
         results = search_package(query)
         return jsonify({"data": results})
