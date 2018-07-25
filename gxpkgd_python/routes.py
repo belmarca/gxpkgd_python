@@ -23,7 +23,6 @@ def packages():
 
 
 @packagesBP.route('/package/<path:repo>', methods=['GET', 'POST'])
-@packagesBP.route('/package/<path:repo>/forks', methods=['GET'])
 @db_session
 def package(repo):
     if request.method == 'GET':
@@ -40,8 +39,8 @@ def package(repo):
             p = Package(**package)
             for f in forks:
                 Fork(login=f['login'], name=f['name'], html_url=f['html_url'], package=p)
-                commit()
-                msg = 'Package {}/{} added.'.format(package['author'], package['name'])
+            commit()
+            msg = 'Package {}/{} added.'.format(package['author'], package['name'])
             return jsonify({"data": msg})
         except Exception as e:
             return jsonify({"error": str(e)})

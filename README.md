@@ -20,96 +20,130 @@ be served behind an https reverse proxy.
 ## Example usage
 
 ```
-(gxs) ➜  http post localhost:5000/package/https://github.com/belmarca/gerbil-simsub
+➜  ~ http post localhost:5000/package/https://github.com/vyzo/gerbil-simsub
 HTTP/1.0 200 OK
-Content-Length: 45
+Content-Length: 50
 Content-Type: application/json
-Date: Mon, 23 Jul 2018 22:03:53 GMT
-Server: Werkzeug/0.14.1 Python/3.5.3
-
-{
-    "data": "Package belmarca/gerbil-simsub added."
-}
-
-(gxs) ➜  http post localhost:5000/package/https://github.com/vyzo/gerbil-simsub
-HTTP/1.0 200 OK
-Content-Length: 45
-Content-Type: application/json
-Date: Mon, 23 Jul 2018 22:04:03 GMT
+Date: Wed, 25 Jul 2018 01:07:05 GMT
 Server: Werkzeug/0.14.1 Python/3.5.3
 
 {
     "data": "Package vyzo/gerbil-simsub added."
 }
 
-(gxs) ➜  http get localhost:5000/package/https://github.com/belmarca/gerbil-simsub 
+➜  ~ http get localhost:5000/package/https://github.com/vyzo/gerbil-simsub 
 HTTP/1.0 200 OK
-Content-Length: 305
+Content-Length: 701
 Content-Type: application/json
-Date: Mon, 23 Jul 2018 22:04:10 GMT
+Date: Wed, 25 Jul 2018 01:07:12 GMT
 Server: Werkzeug/0.14.1 Python/3.5.3
 
 {
     "data": {
-        "author": "belmarca", 
-        "description": "A PubSub Protocol and its Simulator", 
-        "id": 1, 
-        "last_update": "2018-07-23 18:03:53.148801", 
-        "license": "MIT", 
-        "name": "gerbil-simsub", 
-        "repo": "https://github.com/belmarca/gerbil-simsub", 
-        "runtime": "gerbil"
-    }
-}
-
-(gxs) ➜  http get localhost:5000/package/https://github.com/vyzo/gerbil-simsub
-HTTP/1.0 200 OK
-Content-Length: 304
-Content-Type: application/json
-Date: Mon, 23 Jul 2018 22:04:16 GMT
-Server: Werkzeug/0.14.1 Python/3.5.3
-
-{
-    "data": {
-        "author": "vyzo", 
-        "description": "Package has no description.", 
-        "id": 2, 
-        "last_update": "2018-07-23 18:04:03.010399", 
-        "license": "MIT", 
-        "name": "gerbil-simsub", 
-        "repo": "https://github.com/vyzo/gerbil-simsub", 
+        "author": "vyzo",
+        "description": "Package has no description.",
+        "forks": [
+            {
+                "html_url": "https://github.com/belmarca/gerbil-simsub",
+                "id": 1,
+                "login": "belmarca",
+                "name": "gerbil-simsub",
+                "package": 1
+            },
+            {
+                "html_url": "https://github.com/jamesray1/gerbil-simsub",
+                "id": 2,
+                "login": "jamesray1",
+                "name": "gerbil-simsub",
+                "package": 1
+            }
+        ],
+        "id": 1,
+        "last_update": "2018-07-24 21:07:04.638772",
+        "license": "MIT",
+        "name": "gerbil-simsub",
+        "repo": "https://github.com/vyzo/gerbil-simsub",
         "runtime": "No runtime specified."
     }
 }
 
-(gxs) ➜  http get localhost:5000/packages                               
+➜  ~ http post localhost:5000/package/https://github.com/belmarca/gerbil-simsub
 HTTP/1.0 200 OK
-Content-Length: 647
+Content-Length: 54
 Content-Type: application/json
-Date: Mon, 23 Jul 2018 22:04:21 GMT
+Date: Wed, 25 Jul 2018 01:07:22 GMT
+Server: Werkzeug/0.14.1 Python/3.5.3
+
+{
+    "data": "Package belmarca/gerbil-simsub added."
+}
+
+➜  ~ http get localhost:5000/package/https://github.com/belmarca/gerbil-simsub
+HTTP/1.0 200 OK
+Content-Length: 323
+Content-Type: application/json
+Date: Wed, 25 Jul 2018 01:07:26 GMT
+Server: Werkzeug/0.14.1 Python/3.5.3
+
+{
+    "data": {
+        "author": "belmarca",
+        "description": "A PubSub Protocol and its Simulator",
+        "forks": [],
+        "id": 2,
+        "last_update": "2018-07-24 21:07:20.941187",
+        "license": "MIT",
+        "name": "gerbil-simsub",
+        "repo": "https://github.com/belmarca/gerbil-simsub",
+        "runtime": "gerbil"
+    }
+}
+
+➜  ~ http get localhost:5000/packages
+HTTP/1.0 200 OK
+Content-Length: 1096
+Content-Type: application/json
+Date: Wed, 25 Jul 2018 01:07:31 GMT
 Server: Werkzeug/0.14.1 Python/3.5.3
 
 {
     "data": [
         {
-            "author": "belmarca", 
-            "description": "A PubSub Protocol and its Simulator", 
-            "id": 1, 
-            "last_update": "2018-07-23 18:03:53.148801", 
-            "license": "MIT", 
-            "name": "gerbil-simsub", 
-            "repo": "https://github.com/belmarca/gerbil-simsub", 
-            "runtime": "gerbil"
-        }, 
-        {
-            "author": "vyzo", 
-            "description": "Package has no description.", 
-            "id": 2, 
-            "last_update": "2018-07-23 18:04:03.010399", 
-            "license": "MIT", 
-            "name": "gerbil-simsub", 
-            "repo": "https://github.com/vyzo/gerbil-simsub", 
+            "author": "vyzo",
+            "description": "Package has no description.",
+            "forks": [
+                {
+                    "html_url": "https://github.com/belmarca/gerbil-simsub",
+                    "id": 1,
+                    "login": "belmarca",
+                    "name": "gerbil-simsub",
+                    "package": 1
+                },
+                {
+                    "html_url": "https://github.com/jamesray1/gerbil-simsub",
+                    "id": 2,
+                    "login": "jamesray1",
+                    "name": "gerbil-simsub",
+                    "package": 1
+                }
+            ],
+            "id": 1,
+            "last_update": "2018-07-24 21:07:04.638772",
+            "license": "MIT",
+            "name": "gerbil-simsub",
+            "repo": "https://github.com/vyzo/gerbil-simsub",
             "runtime": "No runtime specified."
+        },
+        {
+            "author": "belmarca",
+            "description": "A PubSub Protocol and its Simulator",
+            "forks": [],
+            "id": 2,
+            "last_update": "2018-07-24 21:07:20.941187",
+            "license": "MIT",
+            "name": "gerbil-simsub",
+            "repo": "https://github.com/belmarca/gerbil-simsub",
+            "runtime": "gerbil"
         }
     ]
 }
